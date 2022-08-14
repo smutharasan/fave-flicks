@@ -8,29 +8,59 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
-        loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+        path: 'search',
+        loadChildren: () =>
+          import('../pages/search/search.module').then(
+            (m) => m.SearchPageModule
+          ),
       },
       {
-        path: 'tab2',
-        loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+        path: 'discover',
+        loadChildren: () =>
+          import('../pages/discover/discover.module').then(
+            (m) => m.DiscoverPageModule
+          ),
       },
       {
-        path: 'tab3',
-        loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+        path: 'movie-details',
+        loadChildren: () =>
+          import('../pages/movie-details/movie-details.module').then(
+            (m) => m.MovieDetailsPageModule
+          ),
+      },
+      {
+        path: 'favourites',
+        loadChildren: () =>
+          import('../pages/favourites/favourites.module').then(
+            (m) => m.FavouritesPageModule
+          ),
+      },
+      {
+        path: 'watchlist',
+        loadChildren: () =>
+          import('../pages/watchlist/watchlist.module').then(
+            (m) => m.WatchlistPageModule
+          ),
+      },
+      {
+        path: 'find-people',
+        loadChildren: () =>
+          import('../pages/find-people/find-people.module').then(
+            (m) => m.FindPeoplePageModule
+          ),
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
-        pathMatch: 'full'
-      }
-    ]
+        redirectTo: '/tabs/discover',
+        pathMatch: 'full',
+      },
+    ],
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
-    pathMatch: 'full'
-  }
+    redirectTo: '/tabs/discover',
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({
