@@ -16,13 +16,6 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'movie-details',
-    loadChildren: () =>
-      import('./pages/movie-details/movie-details.module').then(
-        (m) => m.MovieDetailsPageModule
-      ),
-  },
-  {
     path: 'watchlist',
     loadChildren: () =>
       import('./pages/watchlist/watchlist.module').then(

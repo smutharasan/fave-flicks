@@ -3,5 +3,36 @@
     <ion-title>Search</ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-content>
+  <ion-searchbar
+    (search)="loadData($event)"
+    placeholder="Search Movies"
+  ></ion-searchbar>
 
-<ion-content> </ion-content>
+  <ion-grid *ngIf="!listOfMovies?.length"
+    ><ion-row class="textColor"
+      ><ion-col size-md="4" offset-md="4"
+        ><h1 class="ion-text-center">No Search results</h1>
+        <p class="ion-text-center ion-margin">
+          Enter a keyword and press enter
+        </p></ion-col
+      ></ion-row
+    ></ion-grid
+  >
+
+  <ion-list
+    class="ion-no-padding ion-margin-horizontal searchItems"
+    *ngIf="listOfMovies.length > 0"
+  >
+    <ion-item
+      *ngFor="let Movie of listOfMovies"
+      [routerLink]="['/Movie-details', Movie.id]"
+      class="card-background-page"
+    >
+      <ion-card>
+        <img [src]="Movie.backdropPath" />
+        <div class="card-title ion-margin">{{Movie.title}}</div>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+</ion-content>
