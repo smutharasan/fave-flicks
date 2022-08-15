@@ -1,9 +1,98 @@
 <ion-header>
-   <ion-toolbar color="primary">
+  <ion-toolbar color="primary">
     <ion-title>Favourites</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-
+  <ion-grid *ngIf="!listOfFaves?.length"
+    ><ion-row class="textColor"
+      ><ion-col size-md="4" offset-md="4"
+        ><h1 class="ion-text-center">No Movies Added ...</h1>
+        <p class="ion-text-center ion-margin">
+          Try adding some from the Discover or the Search page
+        </p></ion-col
+      ></ion-row
+    ></ion-grid
+  >
+  <ion-list
+    class="ion-margin ion-no-padding favItems"
+    *ngIf="listOfFaves?.length > 0"
+    ><ng-container *ngFor="let f of listOfFaves">
+      <div class="container">
+        <div class="cellphone-container">
+          <div class="movie">
+            <div
+              class="movie-img"
+              [ngStyle]="{ 'background-image': 'url(' + f.movie.backdropPath + ')'}"
+            ></div>
+            <div class="text-movie-cont">
+              <div class="mr-grid">
+                <div class="col1">
+                  <h1>{{f.movie.title}}</h1>
+                  <ul class="movie-gen">
+                    <li>{{f.movie.releaseDate}}</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="mr-grid summary-row">
+                <div class="col2">
+                  <h5>SUMMARY</h5>
+                </div>
+                <div class="col2">
+                  <ul class="movie-likes">
+                    <li>
+                      <i class="material-icons">&#xE813;</i
+                      >{{f.movie.voterAverage}}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="mr-grid">
+                <div class="col1">
+                  <p class="ion-margin ion-text-wrap movie-description">
+                    {{f.movie.overview}}
+                  </p>
+                </div>
+              </div>
+              <div class="mr-grid actors-row"></div>
+              <div class="mr-grid action-row">
+                <div class="col2">
+                  <div
+                    class="watch-btn"
+                    [routerLink]="['/movie-details', f.movie.id]"
+                  >
+                    <h3><i class="material-icons">&#xE037;</i>View Details</h3>
+                  </div>
+                </div>
+                <div class="col2">
+                  <div class="watch-btn" (click)="onDeleteFavourite(f.movie)">
+                    <h3>
+                      <i class="material-icons">&#xE037;</i>Remove From
+                      Favourites List
+                    </h3>
+                  </div>
+                </div>
+              </div>
+              <div class="ion-margin">
+                <h1>My thoughts</h1>
+                <ul class="movie-gen">
+                  ><ion-icon
+                    name="star"
+                    color="secondary"
+                    slot="end"
+                  ></ion-icon>
+                  <li>{{f.rating}}</li>
+                </ul>
+              </div>
+              <div class="ion-margin col1">
+                <p class="ion-margin ion-text-wrap movie-description">
+                  {{f.thoughts}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div></ng-container
+    >
+  </ion-list>
 </ion-content>

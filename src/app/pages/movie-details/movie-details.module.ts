@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AddWatchlistBtnComponent } from '../../components/add-watchlist-btn/add-watchlist-btn.component';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -13,8 +14,8 @@ import { MovieDetailsPage } from './movie-details.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    MovieDetailsPageRoutingModule
+    MovieDetailsPageRoutingModule,
   ],
-  declarations: [MovieDetailsPage]
+  declarations: [MovieDetailsPage, AddWatchlistBtnComponent],
 })
 export class MovieDetailsPageModule {}

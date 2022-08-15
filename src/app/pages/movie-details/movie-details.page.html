@@ -1,43 +1,69 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Movie Details XXX</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/search"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
   <ion-card *ngIf="movieInfo">
     <ion-card-header>
-      <ion-card-title>
-        {{ movieInfo.Title }}
-      </ion-card-title>
-      <ion-card-subtitle>
-        {{ movieInfo.Year }}
-      </ion-card-subtitle>
+      <ion-card-title> {{ movieInfo.title }} - {{movieInfo.id}} </ion-card-title>
+      <ion-card-subtitle> {{ movieInfo.releaseDate }} </ion-card-subtitle>
     </ion-card-header>
     <ion-card-content text-center>
-      <img [src]="movieInfo.Poster" class="info-img">
-      {{ movieInfo.Plot }}
+      <img [src]="movieInfo.posterPath" class="info-img" />
+      <img [src]="movieInfo.backdropPath" class="info-img" />
+      {{ movieInfo.overview }}
 
       <ion-item lines="none">
-        <ion-icon name="star-half" slot="start"></ion-icon>
-        <ion-label>{{ movieInfo.imdbRating }}</ion-label>
+        <ion-icon name="star" slot="start"></ion-icon>
+        <ion-label>{{ movieInfo.voteAverage }}</ion-label>
       </ion-item>
+      <ion-item><ion-label>Cast</ion-label></ion-item>
 
-      <ion-item lines="none">
-        <ion-icon name="clipboard" slot="start"></ion-icon>
-        <ion-label text-wrap>{{ movieInfo.Director }}</ion-label>
-      </ion-item>
+      <ng-container *ngIf="movieCast">
+        <ion-list *ngFor="let cast of movieCast.cast, let movieIndex = index">
+          <ion-item
+            button
+            [routerLink]="['/movie-details', movieCast?.id]"
+            lines="full"
+            detail
+          >
+            <ion-avatar class="ion-margin" item-start>
+              <img [src]="cast.profilePath" />
+            </ion-avatar>
+            <ion-label>
+              <h2>{{cast.name}}</h2>
+              <p>{{cast.character}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+        <ion-item><ion-label>Crew</ion-label></ion-item>
+        <ion-list *ngFor="let crew of movieCast.crew, let movieIndex = index">
+          <ion-item>
+            <ion-avatar class="ion-margin" item-start>
+              <img class="black" [src]="crew.profilePath || defaultImage" />
+            </ion-avatar>
+            <ion-label>
+              <h2>{{crew.name}}</h2>
+              <p>{{crew.knownFor}} - {{crew.job}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ng-container>
 
-      <ion-item lines="none">
-        <ion-icon name="contacts" slot="start"></ion-icon>
-        <ion-label text-wrap>{{ movieInfo.Actors }}</ion-label>
-      </ion-item>
-
-      <ion-button expand="full" (click)="openWebsite()" *ngIf="movieInfo.Website && movieInfo.Website != 'N/A'">
+      <ion-button
+        expand="full"
+        (click)="openWebsite()"
+        *ngIf="movieInfo.homepage && movieInfo.homepage != 'N/A'"
+      >
         <ion-icon name="open" slot="start"></ion-icon>
         Open Website
       </ion-button>
+      <app-add-watchlist-btn [movie]="movieInfo"></app-add-watchlist-btn>
     </ion-card-content>
   </ion-card>
 </ion-content>

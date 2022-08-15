@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
 import { DataService } from 'src/app/services/data.service';
 import { MovieService } from 'src/app/services/movie.service';
 import { BriefMovie } from 'src/app/interfaces/brief-movie';
-import { identity } from 'rxjs';
+
 import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-discover',

@@ -19,7 +19,7 @@
       <ion-card>
         <img [src]="movie.backdropPath" />
         <ion-card-content>
-          <div >
+          <div>
             <ion-card-title slot="start"> {{movie.title}} </ion-card-title
             ><ion-icon name="star" slot="end"></ion-icon>
             <ion-text class="ion-text-left" slot="end" color="primary">
@@ -27,38 +27,12 @@
             </ion-text>
           </div>
           <p class="ion-margin">{{movie.overview}}</p>
-          <button
-            slot="end"
-            class="ion-margin ion-padding"
-            [routerLink]="['/movie-details', movie.id]"
-            ion-button
-            color="secondary"
-            outline
-          >
+          <ion-button [routerLink]="['/movie-details', movie.id]" outline>
             View Details
-          </button>
-          <button
-            slot="end"
-            class="ion-margin ion-padding"
-            (click)="doSomethig()"
-            ion-button
-            color="secondary"
-            outline
-          >
-            + Watchlist
-          </button>
-          <button
-            slot="end"
-            class="ion-margin ion-padding"
-            (click)="doSomethig()"
-            ion-button
-            color="secondary"
-            outline
-          >
-            + Favourites
-          </button>
+          </ion-button>
+          <app-add-watchlist-btn [movie]="movie"></app-add-watchlist-btn>
+          <app-add-favourite-modal [movie]="movie"></app-add-favourite-modal>
         </ion-card-content>
       </ion-card>
-    </ion-list>
-  </ng-container></ion-content
->
+    </ion-list> </ng-container
+></ion-content>

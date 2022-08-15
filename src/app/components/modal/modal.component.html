@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar class="top">
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Add to Favourites</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()">Confirm</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content scroll-y="false">
+  <ion-grid>
+    <ion-row class="buttons">
+      <ion-col offset="1" size="10">
+        <ion-item>
+          <ion-label position="stacked"
+            >What did you think about the movie?</ion-label
+          >
+          <ion-textarea
+            type="text"
+            placeholder="I watched this movie with my boyfriend. Can't forget!"
+            [(ngModel)]="thoughts"
+          ></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">How you rate the movie</ion-label>
+          <ion-input
+            type="text"
+            placeholder="8.9/10"
+            [(ngModel)]="rating"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

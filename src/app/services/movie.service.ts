@@ -24,8 +24,17 @@ export class MovieService {
   }
 
   getMovie(id: string): Observable<any> {
+
+    //https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
     return this.http.get(
-      `${environment.baseUrl}/${id}/information?apiKey=${environment.apiKey}&includeNutrition=true`
+      `${environment.baseUrl}/movie/${id}?api_key=${environment.apiKey}&language=en-US`
+    );
+  }
+  getMovieCredits(id: string): Observable<any> {
+    //https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US
+    //https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
+    return this.http.get(
+      `${environment.baseUrl}/movie/${id}/credits?api_key=${environment.apiKey}&language=en-US`
     );
   }
 }

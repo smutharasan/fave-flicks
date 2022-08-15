@@ -5,5 +5,76 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-grid *ngIf="!listOfWatchListMovies?.length"
+    ><ion-row class="textColor"
+      ><ion-col size-md="4" offset-md="4"
+        ><h1 class="ion-text-center">No Movies Added ...</h1>
+        <p class="ion-text-center ion-margin">
+          Try adding some from the Discover or the Search page
+        </p></ion-col
+      ></ion-row
+    ></ion-grid
+  >
+  <ion-list
+    class="ion-margin ion-no-padding favItems"
+    *ngIf="listOfWatchListMovies?.length > 0"
+    ><ng-container *ngFor="let wl of listOfWatchListMovies">
+      <div class="container">
+        <div class="cellphone-container">
+          <div class="movie">
+            <div
+              class="movie-img"
+              [ngStyle]="{ 'background-image': 'url(' + wl.backdropPath + ')'}"
+            ></div>
+            <div class="text-movie-cont">
+              <div class="mr-grid">
+                <div class="col1">
+                  <h1>{{wl.title}}</h1>
+                  <ul class="movie-gen">
+                    <li>{{wl.releaseDate}}</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="mr-grid summary-row">
+                <div class="col2">
+                  <h5>SUMMARY</h5>
+                </div>
+                <div class="col2">
+                  <ul class="movie-likes">
+                    <li>
+                      <i class="material-icons">&#xE813;</i>{{wl.voterAverage}}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="mr-grid">
+                <div class="col1">
+                  <p class="movie-description">{{wl.overview}}</p>
+                </div>
+              </div>
+              <div class="mr-grid actors-row"></div>
+              <div class="mr-grid action-row">
+                <div class="col2">
+                  <div
+                    class="watch-btn"
+                    [routerLink]="['/movie-details', wl.id]"
+                  >
+                    <h3><i class="material-icons">&#xE037;</i>View Details</h3>
+                  </div>
+                </div>
+                <div class="col2">
+                  <div class="watch-btn" (click)="onDeleteWatchListItem(wl)">
+                    <h3>
+                      <i class="material-icons">&#xE037;</i>Remove From Watch
+                      List
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div></ng-container
+    >
+  </ion-list>
 </ion-content>

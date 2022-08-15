@@ -9,40 +9,27 @@ const routes: Routes = [
   },
   {
     path: 'discover',
-    loadChildren: () =>
-      import('./pages/discover/discover.module').then(
-        (m) => m.DiscoverPageModule
-      ),
+    redirectTo: '/tabs/discover',
     pathMatch: 'full',
   },
   {
     path: 'watchlist',
-    loadChildren: () =>
-      import('./pages/watchlist/watchlist.module').then(
-        (m) => m.WatchlistPageModule
-      ),
+    redirectTo: '/tabs/watchlist',
     pathMatch: 'full',
   },
   {
     path: 'favourites',
-    loadChildren: () =>
-      import('./pages/favourites/favourites.module').then(
-        (m) => m.FavouritesPageModule
-      ),
+    redirectTo: '/tabs/favourites',
     pathMatch: 'full',
   },
   {
     path: 'search',
-    loadChildren: () =>
-      import('./pages/search/search.module').then((m) => m.SearchPageModule),
+    redirectTo: '/tabs/search',
     pathMatch: 'full',
   },
   {
     path: 'find-people',
-    loadChildren: () =>
-      import('./pages/find-people/find-people.module').then(
-        (m) => m.FindPeoplePageModule
-      ),
+    redirectTo: '/tabs/find-people',
     pathMatch: 'full',
   },
   {

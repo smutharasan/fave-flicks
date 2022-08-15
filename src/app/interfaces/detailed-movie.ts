@@ -85,6 +85,7 @@
 }
  */
 export interface DetailedMovie {
+  id: number;
   status: string;
   tagline: string;
   title: string;
